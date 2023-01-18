@@ -1,1 +1,13 @@
 # analysis-of-nyu-subreddit
+
+This is a project that aims to analyze the nyu subreddit in order to provide a platform where students can gain insight into anonymous fellow student thoughts. Additionally, the project can help the administration find what students want, their needs, and criticisms of relevant policies. It can also serve as an influencing factor in administrative decisions. The project is divided into four steps.
+
+The first step of the project consists of data collection using both PRAW (Python Reddit API Wrapper) and PMAW (Pushshift Multithread API Wrapper). PMAW is mainly used to collect data from reddit, as it bypasses the limit of 1000 items per search set by the internal limit of PRAW. PRAW is used for data enrichment, and it is done so by passing a PRAW Reddit instance when instantiating the Pushshift API. Information like link_id, upvotes, and scores are enriched through PRAW.
+
+The second step of the project comprises data cleaning, preprocessing, and organization into three tables: two default tables for both comments and posts, and a new table of comments is created after sentiment analysis has been completed. The foreign key link_id of the comments table can be used to join the primary key id of the posts table.
+
+The third step of the project consists of using the Google Natural Language API to perform sentiment analysis on the comments table. The variable sentiment score and magnitude are obtained for each comment, organized into the new comments table, and stored in SQL.
+
+The fourth step of the project consists of creating visualization plots such as correlation plot, pie chart, bar graphs, line graphs, linear regression,  etc. Further insights are gained and summarized in the presentation, for example: the most active months in the subreddit are September and November, which coincides with the start of the semester and the end of the semester. Additionally, when sentiment is plotted against time of the day, it has a slightly negative slope -0.001, which means that students are slightly more likely to post negative comments during the night period, however the coefficients might be too small to indicate a meaningful relationship. One last example of insight found was that comments and posts that have a positive sentiment score tend to receive more upvotes than negative comments and posts, as indicated by the positive slope of 1.68. 
+
+Finally, a front-end website is created through the use of flask and bootstrap templates that allows users to query comments and posts that are stored in the database. Some visualizations are also present on the website.
